@@ -2,11 +2,11 @@ repositories:
   core/autoware_msgs:
     type: git
     url: https://github.com/autowarefoundation/autoware_msgs.git
-    version: v1.0
+    version: release/v1.0
   core/autoware_adapi_msgs:
     type: git
     url: https://github.com/autowarefoundation/autoware_adapi_msgs.git
-    version: v1.0
+    version: release/v1.0
   core/autoware_common:
     type: git
     url: https://github.com/autowarefoundation/autoware_common.git
@@ -14,7 +14,7 @@ repositories:
   core/autoware.core:
     type: git
     url: https://github.com/autowarefoundation/autoware.core.git
-    version: v1.0
+    version: release/v1.0
   core/external/autoware_auto_msgs:
     type: git
     url: https://github.com/tier4/autoware_auto_msgs.git
@@ -22,7 +22,7 @@ repositories:
   universe/autoware.universe:
     type: git
     url: https://github.com/autowarefoundation/autoware.universe.git
-    version: v1.0
+    version: release/v1.0
   universe/external/tier4_ad_api_adaptor:
     type: git
     url: https://github.com/tier4/tier4_ad_api_adaptor.git
@@ -62,7 +62,7 @@ repositories:
   launcher/autoware_launch:
     type: git
     url: https://github.com/autowarefoundation/autoware_launch.git
-    version: v1.0
+    version: humble
   sensor_component/external/sensor_component_description:
     type: git
     url: https://github.com/tier4/sensor_component_description.git
