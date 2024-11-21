@@ -59,10 +59,14 @@ repositories:
     type: git
     url: https://github.com/MapIV/llh_converter.git
     version: 07ad112b4f6b83eccd3a5f777bbe40ff01c67382
-  launcher/autoware_launch:
+  launcher/autoware_launch_for_scout:
     type: git
-    url: https://github.com/autowarefoundation/autoware_launch.git
-    version: humble
+    url: https://github.com/Unmanned-Systems-Lab/autoware_launch_for_scout.git
+    version: main
+  # launcher/autoware_launch:
+  #   type: git
+  #   url: https://github.com/autowarefoundation/autoware_launch.git
+  #   version: humble
   sensor_component/external/sensor_component_description:
     type: git
     url: https://github.com/tier4/sensor_component_description.git
