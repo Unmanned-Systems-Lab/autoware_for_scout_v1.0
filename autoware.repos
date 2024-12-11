@@ -105,7 +105,7 @@ repositories:
     type: git
     url: https://github.com/tier4/pacmod_interface.git
     version: f3690802c12d1f6335df9f9d695f594ddbac04c6
-  vehicle/external:
+  vehicle/external/interface:
     type: git
     url: https://github.com/Unmanned-Systems-Lab/scout22autoware_interface.git
     version: master
