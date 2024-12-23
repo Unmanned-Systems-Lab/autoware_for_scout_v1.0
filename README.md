@@ -131,7 +131,7 @@ ros2 launch autoware_launch autoware.launch.xml map_path:=$HOME/autoware_map_tes
 
 ### 6.1 CAN通讯挂载(只需要设置一次）
 
-当前版本由于Nvidia烧录的内核没有直接与CAN相连，故采用外接，使用RX TX的端口 进行CAN通讯。
+当前版本由于Nvidia烧录的内核没有包含usb_CAN的东西，故采用外接，使用RX TX的端口 进行CAN通讯。
 编写使用的脚本：(根据需求修改这些参数)
 ```bash
 sudo vim /home/[你的用户名]/CAN_scripts/CAN.sh
