@@ -194,6 +194,25 @@ sudo systemctl stop CAN.service
 sudo systemctl disable CAN.service
 ```
 使用candump can0 检查通讯连接是否建立
+
+### 6.2 参数设置和部分更改
+
+部分参数设置会导致小车无法生成对应轨迹，或者小车移动卡顿。
+
+### 6.2.1 pid参数更改
+ ![](https://github.com/Hikigaya-Yukina/Pictures/blob/main/Screenshot%20from%202024-12-23%2014-50-26.png)
+ 
+ 红色勾勒的4个参数需要作出更改
+ 
+第一组参数：delay compensation = 0.5, kp=2.0,ki=0.3,kd=0.1.
+
+第二组参数：
+
+### 6.2.2 健康检查
+出现 XXX is unhealty时，如果XXX只是某个单一模块，始终无法找到问题所在，可以先删除掉对应的检查，先尝试运行小车。
+
+用VSCODE在autoware_for_scout_v1.0下搜索 “unhealty" 并删除在前面的某一个对应的XXX(会检查map localization control planning 等七个模块)
+
 ### 6.2 通讯节点启动
 ```bash
 cd autoware_for_scout_v1.0
@@ -206,3 +225,4 @@ ros2 launch scout22autoware_interface interface_scout.launch.py
 #在launch文件里设置了pure_pursuit后不需要再在末尾加上 lateral_controller_mode:=pure_pursuit
  ros2 launch autoware_launch autoware.launch.xml map_path:=$HOME/autoware_map_test vehicle_model:=scout_vehicle sensor_model:=scout_sensor_kit
 ```
+
