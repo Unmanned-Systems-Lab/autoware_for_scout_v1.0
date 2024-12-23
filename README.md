@@ -125,3 +125,84 @@ ros2 launch autoware_launch autoware.launch.xml map_path:=$HOME/autoware_map_tes
 
 同上，需要更改对应位置的地图名称。
 
+## 6. 实车启动
+
+小车线路连接。连接好后作出如下更改。
+
+### 6.1 CAN通讯挂载(只需要设置一次）
+
+当前版本由于Nvidia烧录的内核没有直接与CAN相连，故采用外接，使用RX TX的端口 进行CAN通讯。
+编写使用的脚本：(根据需求修改这些参数)
+```bash
+sudo vim /home/[你的用户名]/CAN_scripts/CAN.sh
+#你也可以使用gedit
+```
+脚本的内容：
+```bash
+#!/bin/bash
+sudo busybox devmem 0x0c303000 32 0x0000C400
+sudo busybox devmem 0x0c303008 32 0x0000C458
+sudo busybox devmem 0x0c303010 32 0x0000C400
+sudo busybox devmem 0x0c303018 32 0x0000C458
+sudo modprobe can
+sudo modprobe can_raw
+sudo modprobe mttcan
+sudo ip link set down can0
+sudo ip link set can0 type can bitrate 500000
+sudo ip link set up can0
+```
+编辑并保存后设置权限：
+```bash
+sudo chmod +x /home/[你的用户名]/CAN_scripts/CAN.sh
+```
+使用systemd服务
+```bash
+sudo vim /etc/systemd/system/CAN.service
+#也可以使用gedit
+```
+
+在文档中编辑
+```txt
+[Unit]
+Description=CAN service
+ 
+[Service]
+ExecStart=/home/[你的用户名]/CAN_scripts/CAN.sh
+ 
+[Install]
+WantedBy=multi-user.target
+```
+
+保存并关闭该文件，然后启动该服务并将其设置为开机自启：
+```bash
+sudo systemctl daemon-reload
+ 
+sudo systemctl start CAN.service
+ 
+sudo systemctl enable CAN.service
+```
+
+如果要检查状态：
+```bash
+sudo systemctl status CAN.service
+```
+
+如果要停止服务：
+```bash
+sudo systemctl stop CAN.service
+ 
+sudo systemctl disable CAN.service
+```
+使用candump can0 检查通讯连接是否建立
+### 6.2 通讯节点启动
+```bash
+cd autoware_for_scout_v1.0
+source install/setup.bash
+ros2 launch scout22autoware_interface interface_scout.launch.py
+```
+
+### 6.3 autoware 启动
+```bash
+#在launch文件里设置了pure_pursuit后不需要再在末尾加上 lateral_controller_mode:=pure_pursuit
+ ros2 launch autoware_launch autoware.launch.xml map_path:=$HOME/autoware_map_test vehicle_model:=scout_vehicle sensor_model:=scout_sensor_kit
+```
