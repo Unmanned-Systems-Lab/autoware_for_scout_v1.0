@@ -345,6 +345,23 @@ Note下这几个先不管。
 
 遇到报错参考[20.04 Galactic版本](https://blog.csdn.net/zardforever123/article/details/132029636?spm=1001.2014.3001.5502) 
 
+### 4.3 conlon build 中 可能存在的报错
+
+#### 4.3.1 angles/angles/angles.h无法找到
+
+修改nebula_decoders这个文件夹里的CMakeLists
+
+include_directories 里直接加入文件绝对路径（/opt/ros/humble/include)
+
+#### 4.3.2 diognostic.h 无法找到
+
+修改multi_object_tracker里的CMakeLists.
+
+include_directories 里直接加入文件绝对路径（/opt/ros/humble/include)
+
+#### 4.3.3 FindPACP.cmake 不存在
+根据[该方法](https://blog.csdn.net/u013834525/article/details/96843094)安装功能包，并写一份PACP.cmake放入对应文件夹
+
 ## 5.使用autoware的仿真
 
 现在下载下来的东西基本都调好了。
