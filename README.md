@@ -63,7 +63,7 @@ Note下这几个先不管。
 
 遇到报错参考[20.04 Galactic版本](https://blog.csdn.net/zardforever123/article/details/132029636?spm=1001.2014.3001.5502) 
 
-### 4.3 conlon build 中 可能存在的报错
+### 4.3 colcon build 中 可能存在的报错
 
 #### 4.3.1 angles/angles/angles.h无法找到
 
